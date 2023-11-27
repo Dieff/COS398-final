@@ -28,15 +28,13 @@ jobs:
       - run: "npm run build-ts"
 
         # bundle
-      - name: "Create public archive"
-        run: "tar -cvf public.tar public"
-      - name: Upload pages bundle
-        uses: actions/upload-artifact@v3
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          name: github-pages
-          path: public.tar
-          retention-days: 2
-          if-no-files-found: error
+          path: ./public
 
   publish:
     runs-on: ubuntu-latest
