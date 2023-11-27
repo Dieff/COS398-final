@@ -19,13 +19,7 @@ jobs:
       - run: "npm install"
 
         # Build HTML
-      - run: "mv src/pages/* public/"
-
-        # Build SCSS
-      - run: "npm run build-scss"
-
-        # Build Typescrpt
-      - run: "npm run build-ts"
+      - run: "npm run build"
 
         # bundle
       - name: Setup Pages
