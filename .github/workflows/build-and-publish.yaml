@@ -1,0 +1,53 @@
+name: "build-and-publish"
+run-name: "Pubishing latest push by ${{ github.actor }}"
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install deps
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 16
+        cache: 'npm'
+    - run: "npm install"
+
+      # Build HTML
+      run: "mv src/pages/* public/"
+
+      # Build SCSS
+      run: "npm run build-scss"
+
+      # Build Typescrpt
+      run: "npm run build-ts"
+
+      # bundle
+    - name: "Create public archive"
+      run: "tar -cvf public.tar public"
+    - name: Upload pages bundle
+      uses: actions/upload-artifact@v3
+      with:
+        name: github-pages
+        path: public.tar
+        retention-days: 2
+        if-no-files-found: error
+
+  publish:
+    runs-on: ubuntu-latest
+    # the artifact must already be built with the name github-pages
+    needs: build
+    permissions:
+      pages: write  
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

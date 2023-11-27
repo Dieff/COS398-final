@@ -1,0 +1,4 @@
+.direnv
+public/*
+node_modules
+public.tar

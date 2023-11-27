@@ -1,0 +1,16 @@
+{
+  "name": "cos398-final",
+  "version": "1.0.0",
+  "description": "Nick Dieff's final project for COS398",
+  "main": "index.js",
+  "scripts": {
+    "build-ts": "tsc",
+    "build-scss": "sass src/styles/styles.scss public/styles.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.69.5",
+    "typescript": "^5.3.2"
+  }
+}
