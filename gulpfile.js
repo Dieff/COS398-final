@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 
+// Building SCSS
 const sass = require('gulp-sass')(require('sass'));
 
 function buildSCSS() {
@@ -9,6 +10,7 @@ function buildSCSS() {
 }
 
 
+// Building Typescript
 const ts = require('gulp-typescript');
 
 function buildTS() {
@@ -19,16 +21,23 @@ function buildTS() {
 };
 
 
+// Building HTML templates
 const pug = require('gulp-pug');
 
 function buildPug() {
-  return gulp.src('src/*.pug')
+  return gulp.src("src/*.pug")
     .pipe(
       pug({
-        // Your options in here.
+        pretty: true,
       })
     )
     .pipe(gulp.dest('public/'));
 }
 
-exports.default = gulp.parallel(buildTS, buildSCSS, buildPug);
+
+// Placing static resources
+function moveStatics() {
+  return gulp.src("static/*").pipe(gulp.dest("public/"));
+}
+
+exports.default = gulp.parallel(buildTS, buildSCSS, buildPug, moveStatics);

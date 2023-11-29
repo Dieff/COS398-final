@@ -2,12 +2,46 @@
 The core styles file
 **********/
 
+@import "theme.scss";
 
+// reset styles
 body {
   padding: 0px;
   margin: 0px;
 }
 
-#test-title {
+ul {
+  margin: 0px;
+}
+
+ol {
+  margin: 0px;
+}
+
+// classes
+
+.tpage {
+  .large-nav {
+    display: none;
+  }
+}
+
+@media (min-width: $breakpoint-medium) {
+  .tpage {
+    display: flex;
+
+    .large-nav {
+      display: inherit;
+      flex: 1;
+    }
+    article {
+      flex: 3;
+    }
+  }
+}
+
+// elements
+
+#site-title {
   color: purple;
 }
