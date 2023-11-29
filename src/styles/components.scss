@@ -1,0 +1,72 @@
+/***********
+  Holds styles for the reuseable pug components or shared page elements
+**********/
+
+@import "theme.scss";
+
+// a gray block to represent content that hasn't loaded yet
+// (even tho this is a static site, some stuff needs to be handled
+// by JS before it can be shown)
+.loading-block {
+  width: 90%;
+  min-height: 10rem;
+  margin: auto 1rem;
+
+  background-color: var(--color-content-loading);
+}
+
+// the sidebar that shows on larger screens
+.large-nav {
+  background-color: var(--color-bg-nav);
+  border-right: 0.1rem solid var(--color-border-2);
+  margin-right: 2rem;
+  line-height: 120%;
+
+  h4 {
+    margin: 1rem;
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--color-ec-3);
+  }
+
+  ol {
+    padding: 0px;
+    margin: 0px;
+    li {
+      width: 100%;
+      list-style-type: none;
+      margin-bottom: 0.2rem;
+      padding: 0px;
+
+      a {
+        color: var(--color-body-text);
+        text-decoration: none;
+        width: 100%;
+        padding-left: 1rem;
+
+        &:hover {
+          background-color: var(--color-bg-nav-emph);
+        }
+        &:focus {
+          background-color: var(--color-bg-nav-emph);
+        }
+      }
+
+      ol {
+        margin-left: 2rem;
+      }
+    }
+  }
+}
+
+// the sidebar that shows on smaller screens
+.small-nav {
+
+}
+
+
+// My toggle switch was inspired by:
+// https://alvarotrigo.com/blog/toggle-switch-css/
+.toggle {
+  //
+}

@@ -35,9 +35,19 @@ function buildPug() {
 }
 
 
+// Build YAML data for quizzed and wayland picker
+const yaml = require('gulp-yaml');
+
+function buildYaml() {
+  return gulp.src('./src/**/*.yaml')
+    .pipe(yaml({ safe: true }))
+    .pipe(gulp.dest('./public/'))
+}
+
+
 // Placing static resources
 function moveStatics() {
   return gulp.src("static/*").pipe(gulp.dest("public/"));
 }
 
-exports.default = gulp.parallel(buildTS, buildSCSS, buildPug, moveStatics);
+exports.default = gulp.parallel(buildTS, buildSCSS, buildPug, buildYaml, moveStatics);

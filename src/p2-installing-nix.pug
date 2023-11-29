@@ -1,4 +1,19 @@
 extends ./components/scaffold.pug
 
 block title
-  title "Installing NixOS"
+  title Installing NixOS
+
+block content
+  main(class="tpage")
+    include components/large-nav
+    article
+      h1 Install NixOS
+
+      section(id="heading-os-vm")
+        h2 Your Own Nix VM
+
+      section(id="heading-os-partitioning")
+        h2 Formatting Disks
+
+      section(id="heading-os-bootstrap")
+        h2 Bootstrapping

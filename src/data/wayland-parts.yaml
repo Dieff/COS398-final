@@ -1,0 +1,11 @@
+---
+parts:
+  - target: "wayland-wm-list"
+    choice-type: "exclusive"
+    options:
+      name: "Sway"
+      home: "https://swaywm.org/"
+      docs: "https://github.com/swaywm/sway/wiki#configuration"
+      hm-option-name: ""
+      hm-option-link: ""
+      hm-option-tip: ""

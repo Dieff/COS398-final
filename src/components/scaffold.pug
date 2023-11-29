@@ -5,8 +5,9 @@ html(lang="en")
     meta(charset='UTF-8')
 
     // my resources
-    script(src="/scripts/quiz.js")
+    script(src="/scripts/shared.js")
     link(rel='stylesheet', href='/styles/styles.css')
 
-  body
+  body(data-theme="light")
     block content
+    include footer

@@ -1,4 +1,14 @@
 extends ./components/scaffold.pug
 
 block title
-  title "Making Your Own Nix Desktop"
+  title Making Your Own Nix Desktop
+
+block content
+  main(class="tpage")
+    include components/large-nav
+    article
+      h1 Making Your Own Desktop
+      h2 Home Manager
+      h2 Basic Wayland Flake
+      h2 Flatpak
+      h2 Going Further

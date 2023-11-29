@@ -1,3 +1,39 @@
+/******************
+Holds common variables that are re-used in different places
+******************/
+
+// Color theme is Catppuccin!
+// 	https://github.com/catppuccin/catppuccin
+
+// I use CSS variable, instead of SCSS variable, so that they can be changed with JS
+// The data-theme property is set on the body, and is either "light" or "dark"
+// inspired by https://dev.to/whitep4nth3r/the-best-lightdark-mode-theme-toggle-in-javascript-368f
+[data-theme="light"] {
+  --color-bg-1: #eff1f5;
+  --color-bg-2: #dee0e7;
+  --color-bg-3: #bcc0cc;
+  --color-bg-nav: #ccd0da;
+  --color-bg-nav-emph: #dc8a78;
+  --color-content-loading: #050506;
+
+  --color-title-text: #1e66f5;
+  --color-body-text: #4c4f69;
+  --color-link-text: #7287fd;
+
+  --color-border-1: #40a02b;
+  --color-border-2: #179299;
+
+  --color-ec-1: #d20f39;
+  --color-ec-2: #df8e1d;
+  --color-ec-3: #8839ef;
+}
+
+[data-theme="dark"] {
+}
+
+// standard SCSS vars
 
 $breakpoint-medium: 800px;
 $breakpoint-large: 1200px;
+
+$heading-indent-multiplier: 1rem;

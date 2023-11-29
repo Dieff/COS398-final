@@ -1,0 +1,38 @@
+extends ./components/scaffold.pug
+
+block title
+  title Wayland Part Picker
+  script(src="/scripts/wayland.js")
+
+block content
+  main(class="tpage")
+    include components/large-nav
+    article
+      h1 Choose your desktop
+
+      noscript
+        p The page requires Javascript.
+
+      h4 Options List
+      ul(id="wayland-hm-options")
+
+      h2 Window Manager
+      section(id="wayland-wm-list" class="loading-block")
+
+      h2 Terminal
+      section(id="wayland-term-list" class="loading-block")
+
+      h2 Background
+      section(id="wayland-back-list" class="loading-block")
+
+      h2 Bar and Dock
+      section(id="wayland-bar-list" class="loading-block")
+
+      h2 Launcher
+      section(id="wayland-launcher-list" class="loading-block")
+
+      h2 Notifications
+      section(id="wayland-notify-list" class="loading-block")
+
+      h2 Screenshots and Screensharing
+      section(id="wayland-sc-list" class="loading-block")
