@@ -27,7 +27,12 @@ a {
   color: var(--color-link-text);
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   padding: 0px;
   color: var(--color-title-text);
 }
@@ -50,15 +55,39 @@ h4 {
 }
 
 main {
-  p {
-    margin: 1rem 4rem;
-    background-color: var(--color-bg-2);
+  article {
+    margin: 0rem 2rem;
   }
+}
+
+table {
+  p {
+    background-color: inherit;
+    margin: inherit;
+  }
+
+  thead {
+    margin: 0px;
+    background-color: var(--color-bg-2);
+    td {
+      border-bottom: 0.3rem solid var(--color-border-2);
+    }
+  }
+
+  tbody {
+    td {
+      border-bottom: 0.1rem solid var(--color-border-2);
+      padding: 0.1rem 0rem;
+    }
+  }
+
+  margin: 2rem;
 }
 
 footer {
   width: 100vw;
   margin: 0px;
+  padding: 1rem 0rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -94,9 +123,29 @@ footer {
   }
 }
 
+// the link to the next page is styled like its a button
+.next-page-link {
+  display: block;
+  margin: 1rem  1rem 1rem auto;
+
+  width: 30%;
+  min-width: 10rem;
+  padding: 1rem;
+  border: 0.2rem solid var(--color-border-1);
+  border-radius: 0.5rem;
+  font-size: 120%;
+
+  &:hover {
+    background-color: var(--color-bg-2);
+  }
+}
+
+.split {
+  display: flex;
+}
+
 // elements
 
 #site-title {
   color: purple;
 }
-

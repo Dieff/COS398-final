@@ -8,3 +8,148 @@ block content
     include components/large-nav
     article
       h1 Resources, Reading, and References
+
+      h2 My Favorite Nix Tutorials
+
+      :markdown-it
+        NixOS changes very quickly quickly. 
+        Whether you feel the changes are because Nix is an immature product, or because Nix has a 
+        passionate community, it can be hard to find the documentation you need. These are some
+        of the resources I always go go back to.
+
+      h2 Site References
+
+      :markdown-it
+        The following software tools and documentation pages are references in the tutorial.
+        Archive.org links are included to prevent link rot.
+
+      h3 Tools
+
+      table
+        thead 
+          tr
+            td
+              strong Site
+            td
+              strong Description
+            td
+              strong Archive Link
+        tbody
+          tr(id="ref-determinate-installer")
+            td
+              a(href="https://github.com/DeterminateSystems/nix-installer") Determinate Systems' Nix Installer
+            td
+              p The <code> nix-installer </code> tool by Determinate Systems is the easiest way to bring Nix to your current system without installing NixOS.
+            td
+              a(href="https://web.archive.org/web/20231102111419/https://github.com/DeterminateSystems/nix-installer") November 2, 2023
+          tr(id="ref-nix-wsl")
+            td
+              a(href="https://github.com/nix-community/NixOS-WSL") NixOS on WSL
+            td
+              p This project provides a distribution image of NixOS that you can run on Windows WSL.
+            td
+              a(href="https://web.archive.org/web/20231126104625/https://github.com/nix-community/NixOS-WSL") November 26, 2023
+          tr(id="ref-nixops")
+            td
+              a(href="https://releases.nixos.org/nixops/latest/manual/manual.html") NixOps Documentation
+            td
+              p NixOps allows you to deploy NixOS onto cloud-based virtual machines, like Amazon EC2 or a Digital Ocean Droplet.
+            td
+              a(href="https://web.archive.org/web/20230516102930/https://releases.nixos.org/nixops/latest/manual/manual.html") May 16, 2023
+          tr(id="ref-nil")
+            td
+              a(href="https://github.com/oxalica/nil") Nil
+            td
+              p Probably Nix's best Language Server. Can be used with many different editors and IDEs.
+            td
+              a(href="https://web.archive.org/web/20231115151844/https://github.com/oxalica/nil") November 15, 2023
+          tr(id="ref-alejandra")
+            td
+              a(href="https://github.com/kamadorueda/alejandra") Alejandra
+            td
+              p A handy Nix formatting tool.
+            td
+              a(href="https://web.archive.org/web/20231125123606/https://github.com/kamadorueda/alejandra") November 25, 2023
+          tr(id="ref-vscode")
+            td
+              a(href="https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide") Nix IDE for VSCode
+            td
+              p A general purpose Nix extension for VSCode that can use Nil and Alejandra
+            td
+              a(href="https://web.archive.org/web/20230321212929/https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide") March 21, 2023
+          tr(id="ref-vim")
+            td
+              a(href="https://github.com/nix-community/nixvim") Nixvim
+            td
+              p An entire Neovim distribution build for and with Nix.
+            td
+              a(href="https://web.archive.org/web/20231115082959/https://github.com/nix-community/nixvim") November 15, 2023
+          tr(id="ref-flakehub")
+            td
+              a(href="https://flakehub.com/flakes") Flakehub
+            td
+              p Flakehub is a repository for Nix flakes. This means that it is a package manager of package builders.
+            td
+              p NA
+
+      h3 Documentation
+
+      table
+        thead 
+          tr
+            td
+              strong Site
+            td
+              strong Description
+            td
+              strong Archive Link
+        tbody
+          tr(id="ref-how-it-works")
+            td
+              a(href="https://nixos.org/guides/how-nix-works") How Nix Works
+            td
+              p The official "What is it" overview from Nix.
+            td
+              a(href="https://web.archive.org/web/20231128111430/https://nixos.org/guides/how-nix-works") November 28, 2023
+          tr(id="ref-nix-supported")
+            td
+              a(href="https://nixos.org/manual/nix/stable/installation/supported-platforms") NixOS supported operating systems
+            td
+              p Wish they would add BSD...
+            td
+              a(href="https://web.archive.org/web/20230815192829/https://nixos.org/manual/nix/stable/installation/supported-platforms") August 15, 2023
+          tr(id="ref-dpill")
+            td
+              a(href="https://nixos.org/guides/nix-pills/our-first-derivation") Our First Derivation - Nix Pills
+            td
+              p From the official tutorial: what is a derivation?
+            td
+              a(href="https://web.archive.org/web/20230604094437/https://nixos.org/guides/nix-pills/our-first-derivation") June 4, 2023
+          tr(id="ref-derivations")
+            td
+              a(href="https://nixos.org/manual/nix/stable/language/derivations.html") Derivations
+            td
+              p The NixOS manual helpfully explains this function for us.
+            td
+              a(href="https://web.archive.org/web/20231128212127/https://nixos.org/manual/nix/stable/language/derivations.html") November 28, 2023
+          tr(id="ref-nixpkgs-size-graph")
+            td
+              a(href="https://repology.org/repositories/graphs") Repology.org repo size counts
+            td
+              p Comparing the size of different Linux package repositories.
+            td
+              a(href="https://web.archive.org/web/20231130024924/https://repology.org/repositories/graphs") November 29, 2023
+          tr(id="ref-nipkgs-contributing")
+            td
+              a(href="https://github.com/NixOS/nixpkgs/blob/master/CONTRIBUTING.md") CONTRIBUTING.md
+            td
+              p How to contribute a package to <code>nixpkgs</code> (very technical).
+            td
+              a(href="https://web.archive.org/web/20231029233048/https://github.com/NixOS/nixpkgs/blob/master/CONTRIBUTING.md") October 29, 2023
+          tr(id="ref-nixos-rebuid")
+            td
+              a(href="https://nixos.wiki/wiki/Nixos-rebuild") <code> nixos-rebuilt </code>
+            td
+              p The command you will use to apply a new version of your OS config to the system.
+            td
+              a(href="https://web.archive.org/web/20231128163904/https://nixos.wiki/wiki/Nixos-rebuild") November 28, 2023

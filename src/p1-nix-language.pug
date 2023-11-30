@@ -8,17 +8,210 @@ block content
     include components/large-nav
     article
       h1 Nix and the Nix Expression Langauge
-      p Part 1...
+
+      :markdown-it
+        Welcome to part one! Here, I try my best to explain the general concepts of Nix in a very
+        light and high level way. This is stuff that you need to be away of in order to use NixOS, but
+        you do not need to know by heart.
+
+        Nix is an umbrella term for four different pieces of software, and a vast community
+        of projects that use them.
+
+        The first piece is the Nix Expression Language. This is the language used to write
+        all `.nix` files, including the ones we will use to create our own NixOS. It is designed
+        to look much like a standard configuration file that you might find in use for any number
+        of Unix daemons or services. This is a disguise. It's actually a full programming language. 
+        Its primary purpose is to define derivations: a
+        single reproducible instruction set for building a piece of software.
+
+        Second, we have the Nix store and daemon. The daemon is a system service that builds
+        or downloads Nix *things* and places them in the store. The store is a collection
+        of things, found as directories in `/nix/store`, and each given a unique id based on
+        a name and a hash. The Nix store is a very crowded place. Mine currently has 164,805 sub directories,
+        a number that took about 10 seconds to count. It's actually suprisingly fast, as long as you don't
+        open it in your file manager.
+
+        Third, Nix Flakes are an innovative way to share Nix Expressions between different users. 
+        Flakes are a relatively new part Nix, but are more than ready to be used right now.
+        This tutorial will use Flakes exclusively.
+
+        Finally, the crowning achievement of Nix, which represents probably 99% of the work,
+        is the Nix packages flake, is the `nixpkgs` repository. This is [by far](/references.html#ref-nixpkgs-size-graph) 
+        the most of any Linux distribution, and is one of the largest software repositories of all time.
+        It has over 6000 contributors, and [is always accepting new ones](/references.html#ref-nixpkgs-contributing).
+        The `nixpkgs` project also contains NixOS, a distribution designed to consume all of these packages. However,
+        it is totally possible to use Nix on a number of [other Unix-like operating systems](/references.html#ref-nix-supported).
 
       section(id="heading-whats-nix")
         h2 What can Nix do?
 
+        :markdown-it
+          But what can you actually do with Nix?
+
+          *Install software*. Of course, you can use Nix to add a program to your system on a permanent
+          basic. It also does a great job at allowing you to just try something out, using the
+          `nix shell` command. Finally, there is a `python -m venv` style tool for selecting a set of software
+          to be available just for your current project. Nix-powered developer tooling is a very deep topic that
+          deserves its own, much longer, tutorial.
+
+          *Build containers*. Think every `Dockerfile` is an insecure house of cards? Me too! Use Nix to build
+          OCI-compliant container images that you can run on Docker, Podman, or Kubernetes. It also does VM images
+          in like every format.
+
+          *Configure Servers*. For sysadmins, a NixOS server cluster can define firewalls, services, security features,
+          monitoring, and more. Deploy changes [from one host to another](/references.html#ref-nixos-rebuild) 
+          like you're using better Ansible.
+
+          *Reproducible customized OS installs*. That's what we're gonna do!
+
+
+      section(id="heading-local-install")
+        h2 Install Nix Locally
+
+        :markdown-it
+          The Nix Expression Language has a learning curve. To get started, the best
+          way is to get hands-on and start writing Nix expressions. There's a problem:
+          if you need to understand Nix to install NixOS, and you need NixOS to use Nix,
+          how can you proceed?
+
+          The best solution is to get convenient copy of Nix going on your current system.
+          You can use that to learn the Nix basics, and start writing your first NixOS configuration.
+          On most operating systems, you'll want to use 
+          [Determinate Systems Nix Installer](/references.html#ref-determinate-installer).
+
+          The Nix daemon is not a lightweight piece of software. Even a few packages will take
+          up a significant amount of space. Changes will be made to your `/` directory. If
+          you don't want to add too much to your current system, there are a few other options:
+
+          - Run Nix in a Docker or Podman container.
+          - Run the NixOS LiveCD.
+          - [Run Nix in the cloud.](/references.html#ref-nixops)
+          - [Run Nix on WSL](/references.html#ref-nix-wsl).
+
+          Once Nix has been installed, you should have access to the `nix` command. This is the primary
+          interface to all things Nix, and allows us to evaluate Nix expressions, install Nix packages,
+          or start new Nix projects.
+
+        article
+          h3 Nix in your Editor
+
+          :markdown-it
+            A fancy Nix desktop configuration requires a decent amount of code. The best way to write a
+            decent amount of code is with as little effort as possible. Nix is a weakly typed language,
+            with many different use cases, and so the developer tooling is somewhat new. However,
+            autocomplete, autoformatting, and syntax error highlighting are definitely possible. What
+            more could you want?
+
+            The two recommended Nix developer tools are the [Nil LSP](/references.html#ref-nil) 
+            and the [Alejandra formatter](/references.html#ref-alejandra).
+            There is a direct extension to use these with [VSCode](/references.html#ref-vscode), but
+            any other editor with LSP support will also work. (This is a good time to mention that
+            NixOS users love [Vim](/references.html#ref-vim)).
+
+
       section(id="heading-nix-expr")
         h2 The Nix Expression Langauge
+
+        :markdown-it
+          The Nix Expression Language is a Turing-complete pure functional programming language that
+          happens to look like the Nginx config file. Luckily, the average NixOS configuration uses
+          only a small subset of the language features. If you understand the most basic data types,
+          Nix's first class functions, and a couple of keywords, its more than enough to to get going.
+          The first thing to do is to run `nix repl`. Leanring an entire language is beyond the scope
+          of my little tutorial, but the resources I will link should have some helpful contant content.
+
 
       section(id="heading-nix-packages")
         h2 Nix Packages
 
+        :markdown-it
+          It is not completely necessary to understand how a Nix package works because you use them. It is
+          totally possible to find cool software on the package search, add it to your packages list, and run it
+          without worrying about what's actually going on. However, a basic understanding will probably help when
+          there are errors.
+
+          All of the other Nix magic is built on top of [derivations](/references.html#ref-dpill).
+          A nix derivation is created through a call to the built-in `derivation` function. This takes a dictionary
+          of derivation properties, and returns a derivation object. As a side-effect, a `.drv` file is created in the
+          Nix store. You can use that derivation object to build a package. (A `.drv` file is just a JSON data structure,
+          and you can view its contents with `nix derivation show <path>`).
+
+          A Nix package can be basically anything. It may be a plain text file, a whole bunch of static files, a 
+
+          A simple example. `derivation` is a function that takes a set:
+
+          ```nix
+          derivation {
+            name = "my-derivation";
+            # I will write the build script with bash
+            builder = "/bin/bash";
+            # the arguments to my build script
+            args = [ "-c" "echo hello world > hello.txt" ];
+            outputs = ["hello.txt"];
+          }
+
+          ```
+
+          Nobody actually writes Nix derivations. Instead, we all use the many, many convenient derivation wrappers
+          available in `nixpkgs`. A special deriver exists for basically every programming language. If you write a new
+          piece of software and can usually be made available as a Nix package in just a few lines of code. Also, there
+          are special builder functions for downloading and packaging software that is available in Programming Language specific
+          package repositories, like NPM or PyPi. This makes it very easy to add missing software to your install, if its not
+          already in `nixpkgs`.
+
+          Here is a simple `<nixpkgs>` derivation that builds a C program. The "stdenv" for packages is the C compiler, C library, and core
+          utilities that we would expect on most Unix systems. The majority of Nix packages are created using this environment,
+          meaning these items are available in the build script. The `stdenv.mkDerivation` function takes a number of extra arguments
+          to add many more capabilities over the built-in `derivation`.
+
+          ```nix
+            stdenv.mkDerivation {
+              name = "test-c"; # Package name
+
+              src = fetchurl {
+                url = "http://example.com/test-c-1.0.tar.gz"; # URL to the source code archive
+                # SHA256 hash of the source code archive to check after download
+                sha256 = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"; 
+              };
+
+              buildInputs = [ ]; # List of dependencies needed during the build process
+
+              buildPhase = ''
+                make build
+              '';
+
+              installPhase = ''
+                make install DESTDIR=$out
+              '';
+
+              meta = with stdenv.lib; {
+                description = "A simple hello world C program"; # Package description
+                license = licenses.mit; # License type
+              };
+            }
+          ``` 
+
       section(id="heading-nix-flakes")
         h2 Nix Flakes
 
+        :markdown-it
+          A Flake is a Nix meta-function. It takes some inputs (Nix expressions), and produces outputs (Nix expression).
+          There are many different types of expressions that a Flake can have in its output:
+
+            - A Nix package for installation
+            - A NixOS configuration, defining a system
+            - A NixOS module, that can be used inside of a NixOS configuration
+            - A Home Manager configuration, defining a local user's custom setup
+            - A "Devshell", which is a collection of development tools used for a particular project
+            - A flake template for making other flakes
+
+          Flakes are defined in a `flake.nix` file. A new flake project can be scaffolded with `nix flake init`. A particularly
+          wonderful Flakes feature is the template system. A flake template is a of the contents of a directory.
+          It can be used to quickly start a new project.
+
+          Flakes are designed to work closely with Git. A flake can reference inputs from a Git repository, which a
+          special short syntax for Github projects. A flake inside of a repository will also refuse to read any files
+          which are not part of the Git repository. This is a common source of issues. If you add a new `.nix` file to
+          your NixOS configuration, and then get an error when your flake evaluates, you need to `git add` the new file.
+
+      a(href="/p2-installing-nix.html" class="next-page-link") Next: Installing NixOS
