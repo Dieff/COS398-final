@@ -8,9 +8,42 @@ block content
     include components/large-nav
     article
       h1 Making Your Own Desktop
+
+      :markdown-it
+        Any long-time Linux user will run into the idea of "dotfiles". Linux desktops are
+        composed of many different pieces of software. Most of these programs are configured using
+        a hidden test-based config file in `~` or `~/.config`. This is a dotfile. When you
+        emerge from your getting-really-into-custom-unix phase, and find have hundreds of dotfiles
+        to deal with, you start using tools to manage them all. Eventually, you end up with the
+        classic dotfiles repository.
+
+        Nix has made the dotfiles repository obsolete. Imagine a world where all of your software
+        can be configured in the same language. Install packages at the same time you set them up.
+        Easily deploy your super customized `vim` and `tmux` to another system. Roll back to an old
+        vesion if you make a mistake. Reasonable defaults mean you can more quickly get to the good
+        part (attempting to make `zsh` have the same color scheme as `less`). This is all possible through...
+
       h2 Home Manager
       h2 Basic Wayland Flake
+
+      :markdown-it
+        Although you can use any number of software combinations when putting together a Linux
+        desktop, this tutorial is going to offer some strong opinions about what to get with.
+        Our whole purpose here is to try a new and different way of doing Linux. We will be using
+        Home Manager to try out the latest in Linux Desktop tech, including:
+
+        - Wayland
+        - Containerized Applications
+        - Pirewire
+        - Systemd
+
+
+        The following are some examples of NixOS + Home Manager configurations from around the net. All
+        code is licensed for open source use. Feel free to use them for examples and inspiration.
+
       h2 Flatpak
+
+
       h2 Going Further
 
       a(href="/p4-living-with-nix.html" class="next-page-link") Next: Nix in a long term relationship

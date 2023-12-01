@@ -61,12 +61,48 @@
 
 // the sidebar that shows on smaller screens
 .small-nav {
-
 }
-
 
 // My toggle switch was inspired by:
 // https://alvarotrigo.com/blog/toggle-switch-css/
+// a div holds the label and checkbox
 .toggle {
-  //
+  $toggle-height: 2rem;
+  $toggle-gap: 0.2rem;
+
+  margin-left: $toggle-gap;
+  width: 4rem;
+  height: 2rem;
+
+  background-color: purple;
+  border-radius: 1rem;
+
+  input {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+
+  .toggle-slider {
+    width: $toggle-height - 2 * $toggle-gap;
+    height: $toggle-height - 2 * $toggle-gap;
+    border-radius: calc($toggle-height / 2);
+    background-color: green;
+
+    margin-top: $toggle-gap;
+    margin-left: $toggle-gap;
+
+    transform: translateY(-1.2rem);
+    transition: 0.3s;
+  }
+
+  input:checked + .toggle-slider {
+    transform: translate(120%, -80%);
+    transition: 0.3s;
+  }
+}
+
+.toggle-root {
+  display: flex;
+  align-items: center;
 }

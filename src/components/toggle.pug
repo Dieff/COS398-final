@@ -1,3 +1,5 @@
-div(class="toggle")
-  label(for="theme-togge") dark theme
-  input(id="theme-toggle" type="checkbox")
+div(class="toggle-root")
+  label dark theme
+  label(class="toggle" for="theme-toggle")
+    input(id="theme-toggle" type="checkbox")
+    div(class="toggle-slider")
