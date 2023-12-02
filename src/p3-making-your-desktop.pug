@@ -24,43 +24,45 @@ block content
         vesion if you make a mistake. Reasonable defaults mean you can more quickly get to the good
         part (attempting to make `zsh` have the same color scheme as `less`). This is all possible through...
 
-      h2 Home Manager
+      section(id="heading-hm-intro")
+        h2 Home Manager
 
-      :markdown-it
-
-
-      h2 Basic Wayland Flake
-
-      :markdown-it
-        Although you can use any number of software combinations when putting together a Linux
-        desktop, this tutorial is going to offer some strong opinions about what to get with.
-        Our whole purpose here is to try a new and different way of doing Linux. We will be using
-        Home Manager to try out the latest in Linux Desktop tech, including:
-
-        - Wayland
-        - Containerized Applications
-        - Pirewire
-        - Systemd
+        :markdown-it
 
 
-        The following are some examples of NixOS + Home Manager configurations from around the net. All
-        code is licensed for open source use. Feel free to use them for examples and inspiration.
+      section(id="heading-wayland-flake")
+        h2 Basic Wayland Flake
 
-      h2 Flatpak
+        :markdown-it
+          Although you can use any number of software combinations when putting together a Linux
+          desktop, this tutorial is going to offer some strong opinions about what to get with.
+          Our whole purpose here is to try a new and different way of doing Linux. We will be using
+          Home Manager to try out the latest in Linux Desktop tech, including:
 
-      :markdown-it
-        Linux is built on open source software, but proprietary applications come up despite our best
-        efforts. It is useful to be able to install them when necessary.
-        There are a few proprietary applications in `nixpkgs`. It may also be possible to package
-        a proprietary app for Nix in your dotfiles, though this may have issues due to assumptions about
-        the libraries that are available on your system. Standard Nix packages have a license data structure
-        that includes whether or not the license is "free". If it is not free, you will have to set the
-        `NIXPKGS_ALLOW_UNFREE=1` environment variable before applying.
+          - Wayland
+          - Containerized Applications
+          - Pirewire
+          - Systemd
 
-        The easier solution is to add [Flatpak](/references.html#ref-flatpak) as an extra package manager
-        for your system. This requires a change to your global config NixOS, not the Home Manager one.
-        Most proprietary desktop Linux applications are available on Flathub.
+          The reference page...
 
-      h2 Going Further
+          The following are some examples of NixOS + Home Manager configurations from around the net. All
+          code is licensed for open source use. Feel free to use them for examples and inspiration.
+
+      section(id="heading-flatpak")
+        h2 Flatpak
+
+        :markdown-it
+          Linux is built on open source software, but proprietary applications come up despite our best
+          efforts. It is useful to be able to install them when necessary.
+          There are a few proprietary applications in `nixpkgs`. It may also be possible to package
+          a proprietary app for Nix in your dotfiles, though this may have issues due to assumptions about
+          the libraries that are available on your system. Standard Nix packages have a license data structure
+          that includes whether or not the license is "free". If it is not free, you will have to set the
+          `NIXPKGS_ALLOW_UNFREE=1` environment variable before applying.
+
+          The easier solution is to add [Flatpak](/references.html#ref-flatpak) as an extra package manager
+          for your system. This requires a change to your global config NixOS, not the Home Manager one.
+          Most proprietary desktop Linux applications are available on Flathub.
 
       a(href="/p4-living-with-nix.html" class="next-page-link") Next: NixOS Administration

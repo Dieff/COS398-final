@@ -1,5 +1,25 @@
+// No margin
+@mixin no-margin {
+  padding: 0px;
+  margin: 0px;
+}
+
+// A dialog element fixed to the top lef
 @mixin float-tl {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+// appear on top of anything else
+@mixin float-in-place {
+  position: relative;
+  z-index: 2;
+}
+
+// used for flexbox layouts where everything is evenly spaces
+@mixin space-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }

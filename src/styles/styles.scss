@@ -8,8 +8,7 @@ The core styles file
 
 // Tags
 body {
-  padding: 0px;
-  margin: 0px;
+  @include no-margin;
   width: 100vw;
   overflow-x: hidden;
 
@@ -18,10 +17,7 @@ body {
   color: var(--color-body-text);
 }
 
-ul {
-  margin: 0px;
-}
-
+ul,
 ol {
   margin: 0px;
 }
@@ -67,13 +63,10 @@ main {
 }
 
 table {
-  p {
-    background-color: inherit;
-    margin: inherit;
-  }
+  margin: $pgPaddingSmall;
 
   thead {
-    margin: 0px;
+    @include no-margin;
     background-color: var(--color-bg-2);
     td {
       border-bottom: 0.3rem solid var(--color-border-2);
@@ -86,16 +79,14 @@ table {
       padding: 0.1rem 0rem;
     }
   }
-
-  margin: 2rem;
 }
 
 footer {
   width: 100vw;
   margin: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+
+  @include float-in-place;
+  @include space-around;
 
   section > p:first {
     margin: 0px;
@@ -113,7 +104,7 @@ footer {
   margin: 1rem 1rem 1rem auto;
 
   width: 30%;
-  min-width: 10rem;
+  min-width: $cardSize;
   padding: 1rem;
   border: 0.2rem solid var(--color-border-1);
   border-radius: 0.5rem;
@@ -134,10 +125,9 @@ footer {
     padding-top: $pgPaddingSmall;
   }
   nav {
+    @include space-around;
+
     height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
     font-size: 180%;
     background-color: var(--color-bg-2);
     padding: 0px $pgPaddingSmall;
@@ -151,8 +141,6 @@ footer {
 }
 
 .split {
-  display: flex;
-
   p {
     flex: 1;
     margin-top: $pgPaddingLarge;
@@ -165,10 +153,15 @@ footer {
   }
 }
 
-// elements
+@media (min-width: $breakpoint-medium) {
+  .split {
+    display: flex;
+  }
+}
 
+// elements
 #site-title {
-  color: purple;
+  color: var(--color-border-1);
 }
 
 // A set of cards with responsive sizing
@@ -184,6 +177,6 @@ footer {
     background-color: var(--color-bg-2);
     padding: $pgPaddingSmall;
     border-radius: $pgPaddingSmall;
-    flex: 10rem;
+    flex: $cardSize;
   }
 }

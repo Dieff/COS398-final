@@ -31,6 +31,7 @@
 
   .tpage {
     display: flex;
+    min-height: 80vh;
 
     .large-nav {
       display: block;
@@ -47,7 +48,7 @@
 .large-nav {
   background-color: var(--color-bg-nav);
   border-right: 0.2rem solid var(--color-border-2);
-  margin-right: $pgPaddingLarge;
+  margin-right: $pgPaddingSmall;
   font-size: 130%;
   min-width: 20rem;
 

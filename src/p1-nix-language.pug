@@ -25,8 +25,7 @@ block content
         Its primary purpose is to define derivations: a
         single reproducible instruction set for building a piece of software.
 
-        Second, we have the Nix store and daemon. The daemon is a system service that builds
-        or downloads Nix *things* and places them in the store. The store is a collection
+        Second is the Nix store. The store is a collection
         of things, found as directories in `/nix/store`, and each given a unique id based on
         a name and a hash. The Nix store is a very crowded place. Mine currently has 164,805 sub directories,
         a number that took about 10 seconds to count. It's actually suprisingly fast, as long as you don't
@@ -94,21 +93,20 @@ block content
           interface to all things Nix, and allows us to evaluate Nix expressions, install Nix packages,
           or start new Nix projects.
 
-        article
-          h3 Nix in your Editor
+        h3 Nix in your Editor
 
-          :markdown-it
-            A fancy Nix desktop configuration requires a decent amount of code. The best way to write a
-            decent amount of code is with as little effort as possible. Nix is a weakly typed language,
-            with many different use cases, and so the developer tooling is somewhat new. However,
-            autocomplete, autoformatting, and syntax error highlighting are definitely possible. What
-            more could you want?
+        :markdown-it
+          A fancy Nix desktop configuration requires a decent amount of code. The best way to write a
+          decent amount of code is with as little effort as possible. Nix is a weakly typed language,
+          with many different use cases, and so the developer tooling is somewhat new. However,
+          autocomplete, autoformatting, and syntax error highlighting are definitely possible. What
+          more could you want?
 
-            The two recommended Nix developer tools are the [Nil LSP](/references.html#ref-nil) 
-            and the [Alejandra formatter](/references.html#ref-alejandra).
-            There is a direct extension to use these with [VSCode](/references.html#ref-vscode), but
-            any other editor with LSP support will also work. (This is a good time to mention that
-            NixOS users love [Vim](/references.html#ref-vim)).
+          The two recommended Nix developer tools are the [Nil LSP](/references.html#ref-nil) 
+          and the [Alejandra formatter](/references.html#ref-alejandra).
+          There is a direct extension to use these with [VSCode](/references.html#ref-vscode), but
+          any other editor with LSP support will also work. (This is a good time to mention that
+          NixOS users love [Vim](/references.html#ref-vim)).
 
 
       section(id="heading-nix-expr")
