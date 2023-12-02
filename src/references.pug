@@ -1,13 +1,14 @@
 extends ./components/scaffold.pug
 
 block title
-  title "References"
+  title References and Resources
 
 block content
   main(class="tpage")
     include components/large-nav
+    include components/mobile-header
     article
-      h1 Resources, Reading, and References
+      h1 References and Resources
 
       h2 My Favorite Nix Tutorials
 
@@ -21,7 +22,7 @@ block content
 
       :markdown-it
         The following software tools and documentation pages are references in the tutorial.
-        Archive.org links are included to prevent link rot.
+        Archive.org links are included in case any sites go down over time.
 
       h3 Tools
 
@@ -91,13 +92,20 @@ block content
               p Flakehub is a repository for Nix flakes. This means that it is a package manager of package builders.
             td
               p NA
-          td(id="ref-systemd-timers")
+          tr(id="ref-systemd-timers")
             td
               a(href="https://nixos.wiki/wiki/Systemd/Timers") Systemd Timers
             td
               p The NixOS wiki explains how to configure a SystemD Timer for your system. Home Manager can handle `systemd --user` timers as well.
             td
               a(href="https://web.archive.org/web/20231012135644/https://nixos.wiki/wiki/Systemd/Timers") October 12, 2023
+          tr(id="ref-flatpak")
+            td
+              a(href="https://flatpak.org/setup/NixOS") Flatpak for NixOS
+            td
+              p Flathub's setup instructions for NixOS.
+            td
+              a(href="https://web.archive.org/web/20230721213701/https://flatpak.org/setup/NixOS") July 21, 2023
 
       h3 Documentation
 

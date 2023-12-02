@@ -4,11 +4,14 @@ The core styles file
 
 @import "theme.scss";
 @import "components.scss";
+@import "mixins.scss";
 
 // Tags
 body {
   padding: 0px;
   margin: 0px;
+  width: 100vw;
+  overflow-x: hidden;
 
   //colors
   background-color: var(--color-bg-1);
@@ -25,6 +28,9 @@ ol {
 
 a {
   color: var(--color-link-text);
+  &:hover {
+    text-decoration-color: var(--color-ec-1);
+  }
 }
 
 h1,
@@ -87,14 +93,13 @@ table {
 footer {
   width: 100vw;
   margin: 0px;
-  padding: 1rem 0rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
 
-  section > p {
+  section > p:first {
     margin: 0px;
-    padding: 0px;
+    padding: $pgPaddingSmall;
   }
 
   background-color: var(--color-bg-3);
@@ -102,31 +107,10 @@ footer {
 
 // classes
 
-.tpage {
-  .large-nav {
-    display: none;
-  }
-}
-
-@media (min-width: $breakpoint-medium) {
-  .tpage {
-    display: flex;
-
-    .large-nav {
-      display: block;
-      flex: 1;
-    }
-    article {
-      flex: 3;
-      padding-top: 1rem;
-    }
-  }
-}
-
 // the link to the next page is styled like its a button
 .next-page-link {
   display: block;
-  margin: 1rem  1rem 1rem auto;
+  margin: 1rem 1rem 1rem auto;
 
   width: 30%;
   min-width: 10rem;
@@ -140,12 +124,66 @@ footer {
   }
 }
 
+.index-header {
+  width: 100%;
+  background-color: var(--color-bg-3);
+  h1 {
+    width: 90%;
+    font-size: 400%;
+    margin: 0 auto;
+    padding-top: $pgPaddingSmall;
+  }
+  nav {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 180%;
+    background-color: var(--color-bg-2);
+    padding: 0px $pgPaddingSmall;
+  }
+}
+
+.content-centered {
+  h2 {
+    text-align: center;
+  }
+}
+
 .split {
   display: flex;
+
+  p {
+    flex: 1;
+    margin-top: $pgPaddingLarge;
+  }
+
+  img {
+    flex: 1;
+    height: 10rem;
+    width: auto;
+  }
 }
 
 // elements
 
 #site-title {
   color: purple;
+}
+
+// A set of cards with responsive sizing
+// cards are <section> elements
+.card-holder {
+  margin: $pgPaddingLarge $pgPaddingSmall;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $pgPaddingSmall;
+  justify-content: space-around;
+
+  article {
+    background-color: var(--color-bg-2);
+    padding: $pgPaddingSmall;
+    border-radius: $pgPaddingSmall;
+    flex: 10rem;
+  }
 }

@@ -3,6 +3,7 @@
 **********/
 
 @import "theme.scss";
+@import "mixins.scss";
 
 // a gray block to represent content that hasn't loaded yet
 // (even tho this is a static site, some stuff needs to be handled
@@ -10,57 +11,128 @@
 .loading-block {
   width: 90%;
   min-height: 10rem;
-  margin: auto 1rem;
+  margin: auto $pgPaddingSmall;
 
   background-color: var(--color-content-loading);
+}
+
+.large-nav {
+  display: none;
+}
+
+.mobile-header {
+  height: 10rem;
+}
+
+@media (min-width: $breakpoint-medium) {
+  .mobile-header {
+    display: none;
+  }
+
+  .tpage {
+    display: flex;
+
+    .large-nav {
+      display: block;
+      flex: 1;
+    }
+    article {
+      flex: 3;
+      padding-top: 1rem;
+    }
+  }
 }
 
 // the sidebar that shows on larger screens
 .large-nav {
   background-color: var(--color-bg-nav);
   border-right: 0.2rem solid var(--color-border-2);
-  margin-right: 2rem;
-  line-height: 120%;
+  margin-right: $pgPaddingLarge;
+  font-size: 130%;
+  min-width: 20rem;
 
-  h4 {
-    margin: 1rem;
-    font-weight: bold;
-    text-decoration: underline;
-    color: var(--color-ec-3);
-  }
+  .large-nav-inner {
+    @include float-tl;
+    width: 20rem;
 
-  ol {
-    padding: 0px;
-    margin: 0px;
-    li {
-      width: 100%;
-      list-style-type: none;
-      margin-bottom: 0.2rem;
+    h4 {
+      margin: 1rem;
+      font-weight: bold;
+      text-decoration: underline;
+      color: var(--color-ec-1);
+    }
+
+    ol {
       padding: 0px;
-
-      a {
-        color: var(--color-body-text);
-        text-decoration: none;
+      margin: 0px;
+      li {
         width: 100%;
-        padding-left: 1rem;
+        list-style-type: none;
+        margin-bottom: 0.2rem;
+        padding: 0px;
 
-        &:hover {
-          background-color: var(--color-bg-nav-emph);
-        }
-        &:focus {
-          background-color: var(--color-bg-nav-emph);
-        }
-      }
+        a {
+          color: var(--color-body-text);
+          text-decoration: none;
+          width: 100%;
+          padding-left: 1rem;
 
-      ol {
-        margin-left: 2rem;
+          &:hover {
+            background-color: var(--color-bg-nav-emph);
+          }
+          &:focus {
+            background-color: var(--color-bg-nav-emph);
+          }
+        }
+
+        ol {
+          margin-left: 2rem;
+        }
       }
     }
   }
 }
 
+
 // the sidebar that shows on smaller screens
-.small-nav {
+.mobile-header {
+  background-color: var(--color-bg-nav);
+  height: 5rem;
+
+  h1 {
+    float: left;
+    width: 80%;
+    margin: 1rem 0px 0px 2rem;
+
+    color: var(--color-border-1);
+  }
+}
+
+.burger {
+  float: left;
+  padding-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+
+  button {
+    width: 0px;
+    height: 0px;
+    margin-bottom: -10px;
+    visibility: hidden;
+  }
+  .bar {
+    width: 3rem;
+    height: 0rem;
+    border: 0.15rem solid black;
+    border-radius: 0.2rem;
+  }
+
+  &:hover {
+    background-color: var(--color-bg-3);
+  }
 }
 
 // My toggle switch was inspired by:
@@ -70,7 +142,7 @@
   $toggle-height: 2rem;
   $toggle-gap: 0.2rem;
 
-  margin-left: $toggle-gap;
+  margin-left: $toggle-gap * 2;
   width: 4rem;
   height: 2rem;
 
@@ -92,7 +164,7 @@
     margin-top: $toggle-gap;
     margin-left: $toggle-gap;
 
-    transform: translateY(-1.2rem);
+    transform: translateY(-80%);
     transition: 0.3s;
   }
 
@@ -105,4 +177,13 @@
 .toggle-root {
   display: flex;
   align-items: center;
+}
+
+.big-dot {
+  $dot-circ: 2rem;
+
+  width: $dot-circ;
+  height: $dot-circ;
+  background-color: var(--color-ec-2);
+  border-radius: calc($dot-circ / 2);
 }

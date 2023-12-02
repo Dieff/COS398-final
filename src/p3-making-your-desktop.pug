@@ -6,6 +6,7 @@ block title
 block content
   main(class="tpage")
     include components/large-nav
+    include components/mobile-header
     article
       h1 Making Your Own Desktop
 
@@ -17,13 +18,17 @@ block content
         to deal with, you start using tools to manage them all. Eventually, you end up with the
         classic dotfiles repository.
 
-        Nix has made the dotfiles repository obsolete. Imagine a world where all of your software
-        can be configured in the same language. Install packages at the same time you set them up.
+        Nix has made the dotfiles repository obsolete. It allows all of your software
+        to be configured in the same language. Install packages at the same time you set them up.
         Easily deploy your super customized `vim` and `tmux` to another system. Roll back to an old
         vesion if you make a mistake. Reasonable defaults mean you can more quickly get to the good
         part (attempting to make `zsh` have the same color scheme as `less`). This is all possible through...
 
       h2 Home Manager
+
+      :markdown-it
+
+
       h2 Basic Wayland Flake
 
       :markdown-it
@@ -43,7 +48,19 @@ block content
 
       h2 Flatpak
 
+      :markdown-it
+        Linux is built on open source software, but proprietary applications come up despite our best
+        efforts. It is useful to be able to install them when necessary.
+        There are a few proprietary applications in `nixpkgs`. It may also be possible to package
+        a proprietary app for Nix in your dotfiles, though this may have issues due to assumptions about
+        the libraries that are available on your system. Standard Nix packages have a license data structure
+        that includes whether or not the license is "free". If it is not free, you will have to set the
+        `NIXPKGS_ALLOW_UNFREE=1` environment variable before applying.
+
+        The easier solution is to add [Flatpak](/references.html#ref-flatpak) as an extra package manager
+        for your system. This requires a change to your global config NixOS, not the Home Manager one.
+        Most proprietary desktop Linux applications are available on Flathub.
 
       h2 Going Further
 
-      a(href="/p4-living-with-nix.html" class="next-page-link") Next: Nix in a long term relationship
+      a(href="/p4-living-with-nix.html" class="next-page-link") Next: NixOS Administration

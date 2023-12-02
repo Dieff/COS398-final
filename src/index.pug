@@ -4,45 +4,56 @@ block title
   title Nick's Nix Tutorial Site
 
 block content
-  article
+  header(class="index-header")
     h1(id="site-title") Nick's Nix Tutorial Site
+    nav
+      a(href="/p1-nix-language.html") Tutorial
+      div(class="big-dot")
+      a(href="/wayland-is-fun.html") Wayland Part Picker
+      div(class="big-dot")
+      a(href="/references.html") Site References
 
-      :markdown-it
-        This website contains a basic, hands-on guide to creating a custom NixOS
-        installation for a desktop or laptop computer. This guide doesn't walk
-        through the individual commands and code you will need, but it does
-        provde an outline of the steps you will need, and many resources to help
-        you get started.
-
-    section(class="split")
-
-      article
+  main(class="index-main")
+    article
+      section(class="split")
         :markdown-it
-          ## Who Am I
+          This website contains a basic, hands-on guide to creating a custom NixOS
+          installation for a desktop or laptop computer. This guide doesn't walk
+          through the individual commands and code you will need, but it does
+          provde an outline of the steps you will need, and many resources to help
+          you get started.
 
-          Before I started with NixOS, I was an avid Arch Linux user.
-          I made it through most of a computer science degree with my Arch
-          install. Eventually, 
+        img(alt="The NixOS logo" src="/logo-large.png")
 
-      article 
+      section(class="card-holder")
+
+        article
+          :markdown-it
+            ## Who Am I
+
+            Before I started with NixOS, I was an avid Arch Linux user.
+            I made it through most of a computer science degree with my Arch
+            install. Eventually, 
+
+        article 
+          :markdown-it
+            ## Who Are You?
+
+            This website is a tutorial designed for a Linux user who wants
+            to try something new. It assumes that you already have some
+            experience with the terminal and a little bit of programming.
+
+      section(class="content-centered")
+        h2 The tutorial
+
         :markdown-it
-          ## Who Are You?
+          The tutorial is divided into 4 parts.
 
-          This website is a tutorial designed for a Linux user who wants
-          to try something new. It assumes that you already have some
-          experience with the terminal and a little bit of programming.
+          1. [Nix and the Nix Expression Language](/p1-nix-language.html)
+          2. [Installing NixOS](/p2-installing-nix.html)
+          3. [Configuring your Desktop](/p3-making-your-desktop.html)
+          4. [NixOS Administration](p4-living-with-nix.html)
 
-    section
-      h2 The tutorial
-
-      :markdown-it
-        The tutorial is divided into 4 parts.
-
-        1. [Nix and the Nix Expression Language](/p1-nix-language.html)
-        2. [Installing NixOS](/p2-installing-nix.html)
-        3. [Configuring your Desktop](/p3-making-your-desktop.html)
-        4. [NixOS Administration](p4-living-with-nix.html)
-
-        The site was created for COS 398: Client Side Web Development, at the University of Maine.
-        I took this class in the fall of 2023. The class focuses on static web development using
-        HTML, HTML templates, SCSS, and Typescript.
+          The site was created for COS 398: Client Side Web Development, at the University of Maine.
+          I took this class in the fall of 2023. The class focuses on static web development using
+          HTML, HTML templates, SCSS, and Typescript.

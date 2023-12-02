@@ -6,71 +6,74 @@ block title
 block content
   main(class="tpage")
     include components/large-nav
+    include components/mobile-header
     article
       h1 Living with Nix OS
 
-        :markdown-it
-          A NixOS-based desktop can be a long-lived system in the way most other distributions cannot.
-          It can follow you across many different pieces of hardware. This page documents a few of the common
-          issues you will encounter when running a Nix system for a long time.
+      :markdown-it
+        A NixOS-based desktop can be a long-lived system in the way most other distributions cannot.
+        It can follow you across many different pieces of hardware. This page documents a few of the common
+        issues you will encounter when running a Nix system for a long time.
 
       h2 Updating
 
-        :markdown-it
-          Updating NixOS in a Flake-based system is simple.
+      :markdown-it
+        Updating NixOS in a Flake-based system is simple.
 
-          ```
-          nix flake update
-          nixos-rebuild --switch
-          ```
+        ```
+        nix flake update
+        nixos-rebuild --switch
+        ```
+        This command updates the `flake.lock` file in your config repostitory. During the next
+        evaluation, the latest versions of `nixpkgs` and `home-manager` will be downloaded.
 
-          ### New releases
+        ### New releases
 
-          NixOS has a release [every 6 months](/references.html#ref-nixos-release-sched). Like most
-          Linux distributions, a release implies that the maintainers have identified a set of recent
-          package versions that seem to be stable together. A particular release version will recieved
-          period updates (especially security) for a year. I recommend to try to to stay on a recent release.
-          This can be completely avoided by using the `unstable` branch, at the cost of a less stable system.
+        NixOS has a release [every 6 months](/references.html#ref-nixos-release-sched). Like most
+        Linux distributions, a release implies that the maintainers have identified a set of recent
+        package versions that seem to be stable together. A particular release version will recieved
+        period updates (especially security) for a year. I recommend to try to to stay on a recent release.
+        This can be completely avoided by using the `unstable` branch, at the cost of a less stable system.
 
-          Updating your system is very easy. Just change the branch in your `nixpkgs` input in the main flake.
+        Updating your system is very easy. Just change the branch in your `nixpkgs` input in the main flake.
 
-          Unfortunately, things may break when upgrading to a new release. There tend to be two types of breakage:
+        Unfortunately, things may break when upgrading to a new release. There tend to be two types of breakage:
 
-          1. A NixOS module option has changed. Maintainers generally do a good job adding deprecation warnings to
-          options before they are removed. So, if you stick to upgrading one release at a time, you should
-          recieve instructions about any changes you need to make. If skipping many releases ahead, it is possible
-          that you will miss the time that the module option was deprecated. Instead, it will just be gone. These
-          will be more difficult to fix, because there is no warning to explain what went wrong.
+        1. A NixOS module option has changed. Maintainers generally do a good job adding deprecation warnings to
+        options before they are removed. So, if you stick to upgrading one release at a time, you should
+        recieve instructions about any changes you need to make. If skipping many releases ahead, it is possible
+        that you will miss the time that the module option was deprecated. Instead, it will just be gone. These
+        will be more difficult to fix, because there is no warning to explain what went wrong.
 
-          2. Software changes. Sometimes, a package you use will have a random change that breaks an interaction
-          with another package. Packages can often change the precise layout and names of their files, so you
-          may end up referencing a path in `/nix/store` that no longer exists. It is hard to avoid this issue.
-          You can use old packages by adding an additional input to your Flake, the same way we did with the
-          unstable packages. This will become very complex if you have too many of them.
+        2. Software changes. Sometimes, a package you use will have a random change that breaks an interaction
+        with another package. Packages can often change the precise layout and names of their files, so you
+        may end up referencing a path in `/nix/store` that no longer exists. It is hard to avoid this issue.
+        You can use old packages by adding an additional input to your Flake, the same way we did with the
+        unstable packages. This will become very complex if you have too many of them.
 
       h2 Disk Space
 
-        :markdown-it
-          The `/nix/store` can easily fill up. It not only holds a copy of every package you have ever downloaded,
-          it also has all of past versions of your configuration. Nix utilities come with helpful commands to clean
-          up their garbage. These may take a long time to run. If running out of space is a common issue for you, you
-          may want to run them on a [Timer](/references.html#ref-systemd-timers).
+      :markdown-it
+        The `/nix/store` can easily fill up. It not only holds a copy of every package you have ever downloaded,
+        it also has all of past versions of your configuration. Nix utilities come with helpful commands to clean
+        up their garbage. These may take a long time to run. If running out of space is a common issue for you, you
+        may want to run them on a [Timer](/references.html#ref-systemd-timers).
 
-        table
-          thead
-            tr
-              td Nix tool
-              td Command
-              td Purpose
-          tbody
-            tr
-              td NixOS
-              td <code>nix-collect-garbage --delete-older-than "10d</code>
-              td Delete every Nix store item that is not references in a NixOS generation that has been booted in the last 10 days.
-            tr
-              td Home Manager
-              td <code> home-manager expire-generations "-10 days" </code>
-              td Delete every Home Manager generation that is older than 10 days.
+      table
+        thead
+          tr
+            td Nix tool
+            td Command
+            td Purpose
+        tbody
+          tr
+            td NixOS
+            td <code>nix-collect-garbage --delete-older-than "10d</code>
+            td Delete every Nix store item that is not references in a NixOS generation that has been booted in the last 10 days.
+          tr
+            td Home Manager
+            td <code> home-manager expire-generations "-10 days" </code>
+            td Delete every Home Manager generation that is older than 10 days.
 
         :markdown-it
 

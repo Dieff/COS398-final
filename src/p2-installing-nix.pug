@@ -6,8 +6,17 @@ block title
 block content
   main(class="tpage")
     include components/large-nav
+    include components/mobile-header
     article
       h1 Install NixOS
+
+      :markdown-it
+        Part 2 of this tutorial will be much more hands on.
+        Our goal is to create a new Flake, use it to write a basic NixOS
+        configuration, and get that installed on a machine. With any luck,
+        our the rest of the tutorial will be self-hosted on your new Nix desktop.
+
+      section(id="heading-os-config")
 
       section(id="heading-os-vm")
         h2 Your Own Nix VM

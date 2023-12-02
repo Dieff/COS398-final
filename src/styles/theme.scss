@@ -33,7 +33,10 @@ Holds common variables that are re-used in different places
 
 // standard SCSS vars
 
-$breakpoint-medium: 800px;
+$breakpoint-medium: 900px;
 $breakpoint-large: 1200px;
 
 $heading-indent-multiplier: 1rem;
+
+$pgPaddingSmall: 1rem;
+$pgPaddingLarge: 2rem;
