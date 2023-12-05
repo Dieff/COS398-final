@@ -147,7 +147,7 @@
   width: 4rem;
   height: 2rem;
 
-  background-color: purple;
+  background-color: var(--color-ec-1);
   border-radius: 1rem;
 
   input {
@@ -160,7 +160,7 @@
     width: $toggle-height - 2 * $toggle-gap;
     height: $toggle-height - 2 * $toggle-gap;
     border-radius: calc($toggle-height / 2);
-    background-color: green;
+    background-color: var(--color-ec-3);
 
     margin-top: $toggle-gap;
     margin-left: $toggle-gap;

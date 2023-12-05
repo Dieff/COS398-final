@@ -29,6 +29,23 @@ Holds common variables that are re-used in different places
 }
 
 [data-theme="dark"] {
+  --color-bg-1: #181926;
+  --color-bg-2: #1e2030;
+  --color-bg-3: #24273a;
+  --color-bg-nav: #363a4f;
+  --color-bg-nav-emph: #494d64;
+  --color-content-loading: #6e738d;
+
+  --color-title-text: #c6a0f6;
+  --color-body-text: #cad3f5;
+  --color-link-text: #91d7e3;
+
+  --color-border-1: #ee99a0;
+  --color-border-2: #f5a97f;
+
+  --color-ec-1: #a6da95;
+  --color-ec-2: #8bd5ca;
+  --color-ec-3: #f4dbd6;
 }
 
 // standard SCSS vars
