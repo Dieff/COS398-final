@@ -36,11 +36,11 @@ block content
         This tutorial will use Flakes exclusively.
 
         Finally, the crowning achievement of Nix, which represents probably 99% of the work,
-        is the Nix packages flake, is the `nixpkgs` repository. This is [by far](/references.html#ref-nixpkgs-size-graph) 
+        is the Nix packages flake, is the `nixpkgs` repository. This is [by far](references.html#ref-nixpkgs-size-graph) 
         the most of any Linux distribution, and is one of the largest software repositories of all time.
-        It has over 6000 contributors, and [is always accepting new ones](/references.html#ref-nixpkgs-contributing).
+        It has over 6000 contributors, and [is always accepting new ones](references.html#ref-nixpkgs-contributing).
         The `nixpkgs` project also contains NixOS, a distribution designed to consume all of these packages. However,
-        it is totally possible to use Nix on a number of [other Unix-like operating systems](/references.html#ref-nix-supported).
+        it is totally possible to use Nix on a number of [other Unix-like operating systems](references.html#ref-nix-supported).
 
       section(id="heading-whats-nix")
         h2 What can Nix do?
@@ -59,7 +59,7 @@ block content
           in like every format.
 
           *Configure Servers*. For sysadmins, a NixOS server cluster can define firewalls, services, security features,
-          monitoring, and more. Deploy changes [from one host to another](/references.html#ref-nixos-rebuild) 
+          monitoring, and more. Deploy changes [from one host to another](references.html#ref-nixos-rebuild) 
           like you're using better Ansible.
 
           *Reproducible customized OS installs*. That's what we're gonna do!
@@ -77,7 +77,7 @@ block content
           The best solution is to get convenient copy of Nix going on your current system.
           You can use that to learn the Nix basics, and start writing your first NixOS configuration.
           On most operating systems, you'll want to use 
-          [Determinate Systems Nix Installer](/references.html#ref-determinate-installer).
+          [Determinate Systems Nix Installer](references.html#ref-determinate-installer).
 
           The Nix daemon is not a lightweight piece of software. Even a few packages will take
           up a significant amount of space. Changes will be made to your `/` directory, unless you choose
@@ -85,9 +85,9 @@ block content
           you don't want to add too much to your current system, there are a few other options:
 
           - Run Nix in a Docker or Podman container.
-          - Run the NixOS LiveCD.
-          - [Run Nix in the cloud.](/references.html#ref-nixops)
-          - [Run Nix on WSL](/references.html#ref-nix-wsl).
+          - [Run the NixOS LiveCD.](https://nixos.org/download)
+          - [Run Nix in the cloud.](references.html#ref-nixops)
+          - [Run Nix on WSL](references.html#ref-nix-wsl).
 
           Once Nix has been installed, you should have access to the `nix` command. This is the primary
           interface to all things Nix, and allows us to evaluate Nix expressions, install Nix packages,
@@ -102,11 +102,11 @@ block content
           autocomplete, autoformatting, and syntax error highlighting are definitely possible. What
           more could you want?
 
-          The two recommended Nix developer tools are the [Nil LSP](/references.html#ref-nil) 
-          and the [Alejandra formatter](/references.html#ref-alejandra).
-          There is a direct extension to use these with [VSCode](/references.html#ref-vscode), but
+          The two recommended Nix developer tools are the [Nil LSP](references.html#ref-nil) 
+          and the [Alejandra formatter](references.html#ref-alejandra).
+          There is a direct extension to use these with [VSCode](references.html#ref-vscode), but
           any other editor with LSP support will also work. (This is a good time to mention that
-          NixOS users love [Vim](/references.html#ref-vim)).
+          NixOS users love [Vim](references.html#ref-vim)).
 
 
       section(id="heading-nix-expr")
@@ -130,7 +130,7 @@ block content
           without worrying about what's actually going on. However, a basic understanding will probably help when
           there are errors.
 
-          All of the other Nix magic is built on top of [derivations](/references.html#ref-dpill).
+          All of the other Nix magic is built on top of [derivations](references.html#ref-dpill).
           A nix derivation is created through a call to the built-in `derivation` function. This takes a dictionary
           of derivation properties, and returns a derivation object. As a side-effect, a `.drv` file is created in the
           Nix store. You can use that derivation object to build a package. (A `.drv` file is just a JSON data structure,
