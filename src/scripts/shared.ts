@@ -46,3 +46,33 @@ document.addEventListener("DOMContentLoaded", () => {
       setDarkTheme();
     });
 });
+
+/***
+ * Expandable sections in the nav
+ */
+function expandNavSection(navSection: HTMLDivElement) {
+  if (navSection.classList.contains("cnav-expanded")) {
+    navSection.classList.remove("cnav-expanded");
+  } else {
+    navSection.classList.add("cnav-expanded");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // expand element
+  const expandElement: HTMLSpanElement = document.createElement("button");
+  expandElement.classList.add("nav-expand-button");
+
+  // iterate through the nav sections and add the expander
+  document
+    .querySelectorAll<HTMLDivElement>(".collapsible-nav")
+    .forEach((cNav) => {
+      console.log(cNav);
+      if (cNav.previousElementSibling) {
+        const newExpander = expandElement.cloneNode() as HTMLSpanElement;
+        newExpander.innerHTML = "V";
+        newExpander.onclick = () => expandNavSection(cNav);
+        cNav.previousElementSibling.after(newExpander);
+      }
+    });
+});

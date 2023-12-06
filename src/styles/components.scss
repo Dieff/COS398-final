@@ -63,30 +63,25 @@
       color: var(--color-ec-1);
     }
 
-    ol {
+    ul {
       padding: 0px;
-      margin: 0px;
+      margin: 0px 0px 0px 1rem;
+      list-style-type: none;
+
       li {
-        width: 100%;
-        list-style-type: none;
-        margin-bottom: 0.2rem;
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
         padding: 0px;
 
         a {
-          color: var(--color-body-text);
-          text-decoration: none;
-          width: 100%;
-          padding-left: 1rem;
-
-          &:hover {
-            background-color: var(--color-bg-nav-emph);
-          }
-          &:focus {
-            background-color: var(--color-bg-nav-emph);
-          }
+          flex: 80%;
+          margin-bottom: 0.4rem;
         }
 
-        ol {
+        ul {
           margin-left: 2rem;
         }
       }
@@ -94,6 +89,21 @@
   }
 }
 
+// for the collapsible nav sections
+// gets modified by JS
+.collapsible-nav {
+  visibility: hidden;
+  height: 0rem;
+}
+
+.cnav-expanded {
+  visibility: visible;
+  height: auto;
+}
+
+.nav-expland-button {
+  //
+}
 
 // the sidebar that shows on smaller screens
 .mobile-header {
