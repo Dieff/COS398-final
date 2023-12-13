@@ -13,6 +13,8 @@ function setDarkTheme(): void {
     if (prev_attribute === "light") {
       newTheme = "dark";
     }
+    // write the new theme to local storage
+    localStorage.setItem("theme", newTheme);
     body.setAttribute("data-theme", newTheme);
 
     // emit a custom HTML event to signal to grpahics that they need to change versions
@@ -39,7 +41,15 @@ document.addEventListener("theme", (event: any) => {
   });
 });
 
+
 document.addEventListener("DOMContentLoaded", () => {
+  // we want to retain the theme between pages, so we can keep it in localStorage
+  const initialTheme: string | null = localStorage.getItem("theme");
+  if (initialTheme && initialTheme === "dark") {
+    setDarkTheme();
+  }
+
+  // set an event listener for the theme toggle
   document
     .querySelector<HTMLInputElement>("#theme-toggle")
     ?.addEventListener("change", () => {
