@@ -41,7 +41,6 @@ document.addEventListener("theme", (event: any) => {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
   // we want to retain the theme between pages, so we can keep it in localStorage
   const initialTheme: string | null = localStorage.getItem("theme");
@@ -85,4 +84,27 @@ document.addEventListener("DOMContentLoaded", () => {
         cNav.previousElementSibling.after(newExpander);
       }
     });
+});
+
+/***
+ * References
+ * 
+ * highlights the current reference when you visit the reference page
+ */
+
+function highlightRow(rowId: string) {
+  const refRow = document.querySelector(rowId);
+  if (refRow) {
+    refRow.classList.add("highlighted-row");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const url: Location = document.location;
+  if (url.pathname === "/references.html") {
+    const curReference: string = url.hash;
+    if (curReference && curReference.length > 0) {
+      highlightRow(curReference);
+    }
+  }
 });

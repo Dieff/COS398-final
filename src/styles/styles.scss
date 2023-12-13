@@ -67,6 +67,7 @@ main {
 
 table {
   margin: $pgPaddingSmall;
+  border-collapse: collapse;
 
   thead {
     @include no-margin;
@@ -159,6 +160,14 @@ footer {
 @media (min-width: $breakpoint-medium) {
   .split {
     display: flex;
+  }
+}
+
+.highlighted-row {
+  border-left: 0.2rem solid var(--color-ec-1);
+
+  td {
+    padding-left: 1rem;
   }
 }
 
