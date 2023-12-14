@@ -77,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .querySelectorAll<HTMLDivElement>(".collapsible-nav")
     .forEach((cNav) => {
-      console.log(cNav);
       if (cNav.previousElementSibling) {
         const newExpander: HTMLSpanElement = expandElement.cloneNode() as HTMLSpanElement;
         newExpander.onclick = () => expandNavSection(cNav);
@@ -101,7 +100,7 @@ function highlightRow(rowId: string) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const url: Location = document.location;
-  if (url.pathname === "/references.html") {
+  if (url.pathname.includes("references.html")) {
     const curReference: string = url.hash;
     if (curReference && curReference.length > 0) {
       highlightRow(curReference);
