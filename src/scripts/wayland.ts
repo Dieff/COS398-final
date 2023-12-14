@@ -163,5 +163,5 @@ async function fetchComponentData(dataFile: string) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetchComponentData("/data/wayland-parts.json");
+  fetchComponentData("data/wayland-parts.json");
 });
