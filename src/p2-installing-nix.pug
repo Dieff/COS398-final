@@ -33,7 +33,23 @@ block content
       section(id="heading-os-partitioning")
         h2 Formatting Disks
 
+        :markdown-it
+          Before you can create or apply a Nix configuration, you need to create some disk partitions
+          for the new operating system. With a standard x86_64, you will need a [GPT partition table](references.html#ref-arch-part).
+          Also, you will need a FAT32 boot partition at the start of your main disk. According
+          the the UEFI standard, this boot partition can be up to 512MB large, and will be used for a boot loader,
+          kernel images, and other files. A UEFI boot partition can also be shared between multiple operating systems,
+          as long as there is space.
+          For instance, Windows could share a boot partition, though various Windows updates may cause issues.
+
+          Once all of the disks have been formatted, mount them in the proper order under `/mnt`.
+
       section(id="heading-os-bootstrap")
         h2 Bootstrapping
+
+        :markdown-it
+          If all has gone well, you are looking as a root shell running off of the NixOS live CD.
+
+          `nix-shell -p git nixUnstable`
 
       a(href="/p3-making-your-desktop.html" class="next-page-link") Next: Your Very Own Desktop

@@ -28,7 +28,47 @@ block content
         h2 Home Manager
 
         :markdown-it
+          Home Manager is an independent project from NixOS, also under the Nix umbrella.
+          It uses the Nix expression language to tackle the problem of configuring all of the
+          user-local (not system-wide) software that makes up a functioning Linux desktop. Unlike
+          NixOS, it is not focused on servers. Home Manager uses the same Nix packages as NixOS,
+          so you can use it to install software to your local user as well.
 
+          Home Manager configurations can share a Flake with your current NixOS setup. There
+          are two approaches you can take:
+          1. Have a separete Home Manager configuration in the flake, using the `outputs.homeConfiguration` property.
+          2. Use the NixOS Home Manager module to call Home Manager from inside your NixOS config. This will mean
+          that home manage changes are applied at the same time you rebuild your global system.
+
+          In a single user desktop system, the second option is usually easiest.
+          Add Home Manager to your flake.
+          Import the [NixOS module included with home manager](references.html).
+          Call your Home Manager configuration in a NixOS module: `home-manager.users.my_username`.
+
+          Once Home Manager is running, define a root `home.nix` file to hold the core of your configuration:
+
+          ```nix
+
+            { pkgs, config, ... }:
+
+            {
+              # home manager setup
+              programs.home-manager.enable = true;
+              home.stateVersion = "23.05";
+
+              # create your basic desktop directories (Downloads, Documents, etc.)
+              xdg = {
+                enable = true;
+                userDirs = {
+                  enable = true;
+                };
+              };
+
+              home.packages = with pkgs; [
+                # software that is installed only for your local user
+              ];
+            };
+          ```
 
       section(id="heading-wayland-flake")
         h2 Basic Wayland Flake
@@ -44,10 +84,20 @@ block content
           - Pirewire
           - Systemd
 
-          The reference page...
 
           The following are some examples of NixOS + Home Manager configurations from around the net. All
           code is licensed for open source use. Feel free to use them for examples and inspiration.
+
+        ul
+          li
+            a(href="https://github.com/Mic92/dotfiles/tree/main/home-manager") Mix92 / dotfiles
+          li
+            a(href="https://github.com/fufexan/dotfiles/tree/main/home") fufexan / dotfiles
+          li
+            a(href="https://git.sr.ht/~bwolf/dotfiles/tree") bwolf / dotfiles
+          li
+            a(href="https://github.com/chadcat7/crystal") chadcat7 / crystal
+
 
       section(id="heading-flatpak")
         h2 Flatpak

@@ -14,7 +14,7 @@ The focus of COS 398 is client side web development. The class focuses on static
 This website is a static site built from templates using Gulp. The Gulp runs a series of build tasks that assemple a fully compiled
 website in `public/`. The code can be found in `gulpfile.js`. The following tools are used:
 
-- Pug templates. These allow easy HTML templating and reuseable components.
+- Pug templates. These allow easy HTML templating and reuseable components. I am using the `markdown-it` add-on to write content.
 - SCSS. Allows a common theme to be shared among all pages.
 - Typescript. Implements the interactive site elements
 
@@ -37,18 +37,3 @@ To build a copy of the site:
 npm run build
 ```
 
-Resources:
-
-Nix
-
-- https://learnxinyminutes.com/docs/nix/
-
-Flakes
-
-- https://christine.website/blog/nix-flakes-1-2022-02-21/
-
-Packages
-
-NixOS
-
-Home Manager

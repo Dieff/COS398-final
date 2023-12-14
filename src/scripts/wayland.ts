@@ -29,6 +29,7 @@ function HM(inner: string) {
 {
   # home manager setup
   programs.home-manager.enable = true;
+  home.stateVersion = "23.05";
 
   # create your basic desktop directories (Downloads, Documents, etc.)
   xdg = {
@@ -43,6 +44,7 @@ function HM(inner: string) {
 `;
 }
 
+/// Holds the overall state of the picker page, including which options have been chosed
 class HMState {
   private components: WaylandComponentSelector[] = [];
 
@@ -59,9 +61,10 @@ class HMState {
       // use a regex to count how many times \n appears
       const lineCount: number = hmContent.match(/\n/g)?.length || 0;
       root.textContent = hmContent;
-      
+
+      // make line numbers on the side of the code display
       let lineNumberContent: string = "\n";
-      for (let i = 0; i < lineCount; i++) {
+      for (let i = 1; i < lineCount; i++) {
         lineNumberContent = lineNumberContent + `${i}.\n`;
       }
       lines.textContent = lineNumberContent;
@@ -73,6 +76,7 @@ class HMState {
   }
 }
 
+// In charge of rendering a single option based on the JSON data
 class WaylandComponentSelector {
   private targetElement: HTMLElement;
   public data: WaylandComponent;
@@ -128,9 +132,12 @@ class WaylandComponentSelector {
   }
 }
 
-function renderOptions(data: WaylandCompList[]) {
+async function fetchComponentData(dataFile: string) {
+  // load the JSON data with AJAX
+  const data: WaylandCompList[] = await (await fetch(dataFile)).json();
   const state = new HMState();
 
+  // render the initial screen
   document
     .querySelectorAll<HTMLElement>(".loading-block")
     .forEach((section) => {
@@ -148,15 +155,11 @@ function renderOptions(data: WaylandCompList[]) {
           state.addComponent(newComponent);
         });
       }
+      // remove the loading block class once everything has been rendered
       section.classList.remove("loading-block");
     });
 
   state.render();
-}
-
-async function fetchComponentData(dataFile: string) {
-  const data: WaylandCompList[] = await (await fetch(dataFile)).json();
-  renderOptions(data);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
