@@ -101,8 +101,22 @@
   height: auto;
 }
 
-.nav-expland-button {
-  //
+.nav-expand-button {
+  border: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  margin: auto;
+  padding: 0.1rem;
+
+  background-image: url("../expand-down.svg");
+  background-size: contain;
+  background-color: rgba($color: #000000, $alpha: 0.0);
+
+  &:hover {
+    background-color: var(--color-bg-3);
+    border-bottom: 0.1rem solid var(--color-border-1);
+  }
 }
 
 // the sidebar that shows on smaller screens
@@ -157,7 +171,7 @@
   width: 4rem;
   height: 2rem;
 
-  background-color: var(--color-ec-1);
+  background-color: var(--color-ec-3);
   border-radius: 1rem;
 
   input {
@@ -170,7 +184,7 @@
     width: $toggle-height - 2 * $toggle-gap;
     height: $toggle-height - 2 * $toggle-gap;
     border-radius: calc($toggle-height / 2);
-    background-color: var(--color-ec-3);
+    background-color: var(--color-ec-2);
 
     margin-top: $toggle-gap;
     margin-left: $toggle-gap;

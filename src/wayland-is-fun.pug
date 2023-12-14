@@ -15,25 +15,32 @@ block content
         p The page requires Javascript.
 
       h4 Options List
-      ul(id="wayland-hm-options")
+      :markdown-it
+        Use this content as a starter for your `home.nix` configuration.
+        Choose your desktop components from the list below. You can use the
+        [Home Manager option search](references.html#ref-hm-os) to learn more.
+      
+      pre(id="wayland-hm-options")
+        code(id="wayland-hm-code-line-numbers")
+        code(id="wayland-hm-code-block")
 
       h2 Window Manager
-      section(id="wayland-wm-list" class="loading-block")
+      section(id="wayland-wm-list" class="loading-block card-holder")
 
       h2 Terminal
-      section(id="wayland-term-list" class="loading-block")
+      section(id="wayland-term-list" class="loading-block card-holder")
 
       h2 Background
-      section(id="wayland-back-list" class="loading-block")
+      section(id="wayland-background-list" class="loading-block card-holder")
 
       h2 Bar and Dock
-      section(id="wayland-bar-list" class="loading-block")
+      section(id="wayland-bar-list" class="loading-block card-holder")
 
       h2 Launcher
-      section(id="wayland-launcher-list" class="loading-block")
+      section(id="wayland-launcher-list" class="loading-block card-holder")
 
       h2 Notifications
-      section(id="wayland-notify-list" class="loading-block")
+      section(id="wayland-notify-list" class="loading-block card-holder")
 
       h2 Screenshots and Screensharing
-      section(id="wayland-sc-list" class="loading-block")
+      section(id="wayland-sc-list" class="loading-block card-holder")

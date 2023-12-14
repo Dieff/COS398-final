@@ -171,11 +171,6 @@ footer {
   }
 }
 
-// elements
-#site-title {
-  color: var(--color-border-1);
-}
-
 // A set of cards with responsive sizing
 // cards are <section> elements
 .card-holder {
@@ -190,5 +185,56 @@ footer {
     padding: $pgPaddingSmall;
     border-radius: $pgPaddingSmall;
     flex: $cardSize;
+  }
+}
+
+.wayland-comp-card {
+  background-color: var(--color-bg-2);
+  border-radius: $pgPaddingSmall;
+  padding: $pgPaddingSmall;
+  border: 0.2rem solid var(--color-bg-2);
+
+  h3 {
+    color: var(--color-border-1);
+  }
+
+  div {
+    display: flex;
+    gap: $pgPaddingSmall;
+
+    ul {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+    }
+
+    input {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.2rem;
+    }
+  }
+}
+
+.wayland-comp-card-selected {
+  border: 0.2rem solid var(--color-border-2);
+}
+
+// elements
+#site-title {
+  color: var(--color-border-1);
+}
+
+#wayland-hm-options {
+  background-color: var(--color-bg-2);
+  width: 100%;
+  min-height: 5rem;
+  font-size: 130%;
+
+  display: flex;
+  gap: 0.4rem;
+
+  code:first-child {
+    background-color: var(--color-bg-3);
   }
 }

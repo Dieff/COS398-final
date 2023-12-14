@@ -69,7 +69,8 @@ function expandNavSection(navSection: HTMLDivElement) {
 
 document.addEventListener("DOMContentLoaded", () => {
   // expand element
-  const expandElement: HTMLSpanElement = document.createElement("button");
+  const expandElement: HTMLSpanElement = document.createElement("input");
+  expandElement.setAttribute("type", "button");
   expandElement.classList.add("nav-expand-button");
 
   // iterate through the nav sections and add the expander
@@ -78,8 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .forEach((cNav) => {
       console.log(cNav);
       if (cNav.previousElementSibling) {
-        const newExpander = expandElement.cloneNode() as HTMLSpanElement;
-        newExpander.innerHTML = "V";
+        const newExpander: HTMLSpanElement = expandElement.cloneNode() as HTMLSpanElement;
         newExpander.onclick = () => expandNavSection(cNav);
         cNav.previousElementSibling.after(newExpander);
       }

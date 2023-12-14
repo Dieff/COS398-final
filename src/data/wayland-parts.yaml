@@ -1,11 +1,286 @@
----
-parts:
-  - target: "wayland-wm-list"
-    choice-type: "exclusive"
-    options:
-      name: "Sway"
+- target: "wayland-wm-list"
+  choiceType: "exclusive"
+  options:
+    - name: "Sway"
       home: "https://swaywm.org/"
       docs: "https://github.com/swaywm/sway/wiki#configuration"
-      hm-option-name: ""
-      hm-option-link: ""
-      hm-option-tip: ""
+      hmOptionBody: |
+        wayland.windowManager.sway = {
+            enable = true;
+            swaynag.enable = true;
+            config = {
+              # your config here
+            };
+          };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "Hyprland"
+      home: "https://hyprland.org/"
+      docs: "https://wiki.hyprland.org/Getting-Started/Master-Tutorial/"
+      hmOptionBody: |
+        wayland.windowManager.hyprland = {
+            enable = true;
+            # if you have a nvidia card
+            enableNvidiaPatches = true;
+            plugins = with pkgs; [
+            # add Nix packaged Hyperland plugins to the list
+            ];
+            systemd.enable = true;
+          };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "qtile"
+      home: "https://qtile.org/"
+      docs: "https://docs.qtile.org/en/latest/index.html"
+      hmOptionBody: |
+        # there is no qtile home manager module
+        home.packages = [pkgs.qtile];
+        # create a systemd user service...
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "river"
+      home: "https://github.com/riverwm/river"
+      docs: "https://github.com/riverwm/river/wiki"
+      hmOptionBody: |
+        # there is no river home manager module
+        home.packages = [pkgs.river];
+      hmOptionLink: ""
+      hmOptionTip: ""
+- target: "wayland-term-list"
+  choiceType: "inclusive"
+  options:
+    - name: "Alacritty"
+      home: "https://alacritty.org/"
+      docs: "https://github.com/alacritty/alacritty/blob/master/docs/features.md"
+      hmOptionBody: |
+        programs.alacritty = {
+          enable = true;
+          settings = {
+            # settings here!
+          };
+        };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "Foot"
+      home: "https://codeberg.org/dnkl/foot"
+      docs: "https://codeberg.org/dnkl/foot#user-content-configuration"
+      hmOptionBody: |
+        programs.foot = {
+          enable = true;
+          settings = {
+            # settings here!
+          };
+        };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "Kitty"
+      home: "https://sw.kovidgoyal.net/kitty/"
+      docs: "https://sw.kovidgoyal.net/kitty/overview/"
+      hmOptionBody: |
+        programs.kitty = {
+          enable = true;
+          extraSettings = {
+            # gets combined with the standard defaults
+          };
+        };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "wezterm"
+      home: "https://wezfurlong.org/wezterm/"
+      docs: "https://wezfurlong.org/wezterm/config/files.html"
+      hmOptionBody: |
+        programs.wezterm = {
+          enable = true;
+          # choose from a bunch of built-ins
+          colorSchemes = [ "solarized-dark" ];
+          extraConfig = {
+            #...
+           };
+        }
+      hmOptionLink: ""
+      hmOptionTip: ""
+
+- target: "wayland-background-list"
+  choiceType: "exclusive"
+  options:
+    - name: "swaybg"
+      home: "https://github.com/swaywm/swaybg"
+      docs: "https://man.archlinux.org/man/swaybg.1.en"
+      hmOptionBody: |
+          # Desktop background
+          home.packages = [ pkgs.swaybg ];
+          systemd.user.services.swaybg = {
+            Unit = {Description = "Swaybg background";};
+            Service = {
+              Type = "simple";
+              ExecStart = "${pkgs.swaybg}/bin/swaybg --output '*' -m fill --image '${
+                builtins.getEnv "HOME"
+              }/Pictures/wallpaper.png'";
+            };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "swww"
+      home: "https://github.com/Horus645/swww"
+      docs: "https://github.com/Horus645/swww"
+      hmOptionBody: |
+        home.packages = [ pkgs.swwww ];
+      hmOptionLink: ""
+      hmOptionTip: ""
+
+- target: "wayland-bar-list"
+  choiceType: "inclusive"
+  options:
+    - name: "Waybar"
+      home: "https://github.com/Alexays/Waybar"
+      docs: "https://github.com/Alexays/Waybar/wiki"
+      hmOptionBody: |
+        programs.waybar = {
+          enable = true;
+          style = "your css here...";
+          settings = {
+            # waybar settings here...
+          };
+          systemd.enable = true;
+        }
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "eww"
+      home: "https://elkowar.github.io/eww/"
+      docs: "https://elkowar.github.io/eww/configuration.html"
+      hmOptionBody: |
+        programs.eww = {
+          enable = true;
+          # put a custom eww config dir in your nix repo, put the path here
+          configDir = asdf;
+        };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "swaybar"
+      home: "https://swaywm.org/"
+      docs: "https://man.archlinux.org/man/sway-bar.5"
+      hmOptionBody: |
+        wayland.windowManager.sway.config.bars = {
+          # standard swaybar config
+        };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "Lava Launcher"
+      home: "https://git.sr.ht/~leon_plickat/lavalauncher"
+      docs: "https://www.mankier.com/1/lavalauncher"
+      hmOptionBody: |
+        # configure manually
+        home.packages = [ pkgs.lavalauncher ];
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "nwg-dock"
+      home: "https://nwg-piotr.github.io/nwg-shell/"
+      docs: "https://github.com/nwg-piotr/nwg-dock"
+      hmOptionBody: |
+        # configure manually
+        home.packages = [ pkgs.nwg-dock ];
+      hmOptionLink: ""
+      hmOptionTip: ""
+
+- target: "wayland-launcher-list"
+  choiceType: "inclusive"
+  options:
+    - name: "Albert"
+      home: "https://albertlauncher.github.io/"
+      docs: "https://albertlauncher.github.io/using/"
+      hmOptionBody: |
+        # albert has a simple gui for configuration
+        home.packages = [ pkgs.albert ];
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "Anyrun"
+      home: "https://github.com/Kirottu/anyrun"
+      docs: "https://github.com/Kirottu/anyrun/blob/master/examples/config.ron"
+      hmOptionBody: |
+        # just an example. anyrun requires importing a custom HM module
+          programs.anyrun = {
+            enable = true;
+            config = {
+              plugins = [
+                anyrun.packages.${pkgs.system}.applications
+                # emoji!
+                anyrun.packages.${pkgs.system}.symbols
+              ];
+              y = {fraction = 0.3;};
+              maxEntries = 30;
+            };
+          };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "bemenu"
+      home: "https://github.com/Cloudef/bemenu"
+      docs: "https://github.com/Cloudef/bemenu"
+      hmOptionBody: |
+        home.packages = [ pkgs.bemenu ];
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "kickoff"
+      home: "https://github.com/j0ru/kickoff"
+      docs: "https://github.com/j0ru/kickoff"
+      hmOptionBody: |
+        home.packages = [ pkgs.kickoff ];
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "Fuzzel"
+      home: "https://codeberg.org/dnkl/fuzzel"
+      docs: "https://www.mankier.com/1/fuzzel"
+      hmOptionBody: |
+        programs.fuzzel = {
+          enable = true;
+          settings = {
+            # fuzzel settings here
+          };
+        };
+      hmOptionLink: ""
+      hmOptionTip: ""
+
+
+- target: "wayland-notify-list"
+  choiceType: "exclusive"
+  options:
+    - name: "fnott"
+      home: "https://codeberg.org/dnkl/fnott"
+      docs: "https://codeberg.org/dnkl/fnott/src/branch/master/doc/fnott.1.scd"
+      hmOptionBody: |
+        services.fnott = {
+          enable = true;
+          # etc...
+        };
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "mako"
+      home: "https://wayland.emersion.fr/mako/"
+      docs: "https://github.com/emersion/mako/wiki"
+      hmOptionBody: |
+        services.mako = {
+          enable = true;
+          anchor = "top-right";
+          # etc...
+        };
+      hmOptionLink: ""
+      hmOptionTip: ""
+
+- target: "wayland-sc-list"
+  choiceType: "exclusive"
+  options:
+    - name: "grim"
+      home: "https://sr.ht/~emersion/grim/"
+      docs: "https://sr.ht/~emersion/grim/"
+      hmOptionBody: |
+        home.packages = [ pkgs.grim ];
+      hmOptionLink: ""
+      hmOptionTip: ""
+    - name: "flameshot"
+      home: "https://flameshot.org/"
+      docs: "https://flameshot.org/docs/guide/wayland-help/"
+      hmOptionBody: |
+        services.flameshot = {
+          enable = true;
+          settings = {
+            # your flameshot settings here...
+          };
+        };
